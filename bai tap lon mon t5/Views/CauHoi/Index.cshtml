@@ -1,0 +1,54 @@
+﻿
+<style>
+    .headList {
+        float: left;
+        width: 150px;
+        font-size: 25px;
+    }
+
+    .headRow {
+        float: left;
+        width: 250px;
+    }
+</style>
+<div style="text-align:center">
+
+
+    @using (Html.BeginForm("ThemCauHoi", "CauHoi", FormMethod.Post))
+    {
+        <div class="headList"> Noi dung</div>
+        <div class="headRow"><input type="text" name="noiDung" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> loiGiai</div>
+        <div class="headRow"><input type="text" name="loiGiai" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> dapAnA</div>
+        <div class="headRow"><input type="text" name="dapAnA" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> dapAnB</div>
+        <div class="headRow"><input type="text" name="dapAnB" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> dapAnC</div>
+        <div class="headRow"><input type="text" name="dapAnC" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> dapAnD</div>
+        <div class="headRow"><input type="text" name="dapAnD" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> dapAnDung</div>
+        <div class="headRow"><input type="text" name="dapAnDung" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> IMG</div>
+        <div class="headRow"><input type="text" name="IMG" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> doKho </div>
+        <div class="headRow"><input type="text" name="doKho" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> vungKienThuc</div>
+        <div class="headRow"><input type="text" name="vungKienThuc" /></div>
+        <div style="clear:both"></div>
+        <div class="headList"> loaiCauHoi</div>
+        <div class="headRow"><input type="text" name="loaiCauHoi" /></div>
+        <div style="clear:both"></div>
+        <input class="headRow" type="submit" value="Them:" />
+    }
+</div>

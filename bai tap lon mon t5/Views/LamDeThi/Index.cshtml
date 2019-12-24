@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLamDE.cshtml";
+}
+
+@using bai_tap_lon_mon_t5.Models;
+
+<br />
+<br />
+<h1 style="color:red;text-align:center;">MÃ ĐỀ THI:@ViewBag.id</h1>
+<br />
+
+@{
+
+    int i = 1;
+
+    List<CAUHOI> lst = (List<CAUHOI>)ViewData["DSCHDT"];
+    foreach (CAUHOI sp in lst)
+    {
+            <div class="form-group" style="border-bottom: 1px solid black; text-align:center;">
+                <h4> @i . @sp.NoiDung </h4>
+                <p style="display: inline-block;width: 100%;border: 1px solid #80808087;border-radius: 5px;border-radius: 1px solid gray;">
+                    <input type="radio" name=@i.ToString() style="margin: 16px 25px;" />
+                    <span>A. @sp.DapAnA</span>
+                </p>
+                <p style="display: inline-block;width: 100%;border: 1px solid #80808087;border-radius: 5px;border-radius: 1px solid gray;">
+                    <input type="radio" name="@i.ToString()" checked="checked" style="margin: 16px 25px;" />
+                    <span>B. @sp.DapAnB</span>
+                </p>  <p style="display: inline-block;width: 100%;border: 1px solid #80808087;border-radius: 5px;border-radius: 1px solid gray;">
+                    <input type="radio" name="@i.ToString()" checked="checked" style="margin: 16px 25px;" />
+                    <span>C. @sp.DapAnC</span>
+                </p>
+                <p style="display: inline-block;width: 100%;border: 1px solid #80808087;border-radius: 5px;border-radius: 1px solid gray;">
+                    <input type="radio" name="@i.ToString()" style="margin: 16px 25px;" />
+                    <span>D. @sp.DapAnD</span>
+                </p>
+            </div>
+
+        i++;
+    }
+}
+
+        
+
+
+
