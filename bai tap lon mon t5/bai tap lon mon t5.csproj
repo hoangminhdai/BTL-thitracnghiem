@@ -136,17 +136,12 @@
     </Compile>
     <Compile Include="Models\ADMIN.cs" />
     <Compile Include="Models\CAUHOI.cs" />
-    <Compile Include="Models\CHITIETDETHI.cs" />
-    <Compile Include="Models\CHITIETGOIDE.cs" />
+    <Compile Include="ConnectSQL.cs" />
     <Compile Include="Models\DETHI.cs" />
     <Compile Include="Models\GIAOVIEN.cs" />
     <Compile Include="Models\GOIDE.cs" />
     <Compile Include="Models\LOAICAUHOI.cs" />
-    <Compile Include="Models\QUANLY_CAUHOI.cs" />
-    <Compile Include="Models\QUANLY_GIAOVIEN.cs" />
     <Compile Include="Models\USER.cs" />
-    <Compile Include="Models\USER_DETHI.cs" />
-    <Compile Include="Models\USER_LAMDE.cs" />
     <Compile Include="Models\VUNGCAUHOI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -184,13 +179,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CauHoi\Index.cshtml" />
     <Content Include="Views\CauHoi\ThemTC.cshtml" />
     <Content Include="Views\Shared\_LayoutLamDE.cshtml" />
     <Content Include="Views\LamDeThi\Index.cshtml" />
+    <Content Include="Views\LamDeThi\KetQua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

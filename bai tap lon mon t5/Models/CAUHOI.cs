@@ -25,7 +25,7 @@ namespace bai_tap_lon_mon_t5.Models
         private int vungKienThuc;
         private int loaiCauHoi;
 
-        public int MaCauHoi { get => maCauHoi; set => maCauHoi = value; }
+        public int MaCauHoi { get => maCauHoi; set => maCauHoi = value; }// gàm get mã câu hỏi
         public string NoiDung { get => noiDung; set => noiDung = value; }
         public string LoiGiai { get => loiGiai; set => loiGiai = value; }
         public string DapAnA { get => dapAnA; set => dapAnA = value; }
@@ -38,58 +38,16 @@ namespace bai_tap_lon_mon_t5.Models
         public int VungKienThuc { get => vungKienThuc; set => vungKienThuc = value; }
         public int LoaiCauHoi { get => loaiCauHoi; set => loaiCauHoi = value; }
 
-        //CAUHOI(int ma,string nd,string lg,string a,string b,string c, string d,string dadung,string img,string dokho,string vungkt,string loaicauhoi)
-        //{
-        //  MaCauHoi = ma;
-        //    noiDung= nd;
-        //    loiGiai= lg;
-        //    dapAnA = a ;
-        //    dapAnB = b;
-        //    dapAnC = c;
-        //    dapAnD = d;
-        //    dapAnDung = dadung;
-        //    IMG = img;
-        //    doKho = dokho;
-        //    vungKienThuc = vungkt;
-        //    loaiCauHoi = loaicauhoi;
-
-        //} 
-
-        //tạo proc thêm câu hỏi trong sql
-        //        create proc pc_ThemCauHoi(
-        //@noiDung nvarchar(200),     
-        //@loiGiai nvarchar(200), 
-        //@dapAnA nvarchar(200)  ,
-        //@dapAnB nvarchar(200),   
-        //@dapAnC nvarchar(200) , 
-        //@dapAnD nvarchar(200),
-        //@dapAnDung nvarchar(200),  
-        //@IMG nvarchar(200),
-        //@doKho nvarchar(200),       
-        //@vungKienThuc int,
-        //@loaiCauHoi int )
-        //as
-        //begin
-        //    insert into CAUHOI(NoiDung, LoiGiai, A, B, C, D, DapAnDung, IMG, DoKho, VungKienThuc, LoaiCauHoi)
-
-        //    values(
-        //    @noiDung,
-        //    @loiGiai,
-        //    @dapAnA ,
-        //    @dapAnB ,
-        //    @dapAnC ,
-        //    @dapAnD ,
-        //    @dapAnDung,
-        //    @IMG    ,
-        //    @doKho   ,
-        //    @vungKienThuc,
-        //    @loaiCauHoi
-
-        //    )
-        //end
+        public CAUHOI TimCauHoi(int maCauHoi)
+        {
+            return null;
+        }
         public void ThemCauHoi(CAUHOI a)
         {
-            SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;Integrated Security=SSPI");
+            //SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;Integrated Security=SSPI");
+            SqlConnection con = new SqlConnection();
+            ConnectSQL c = new ConnectSQL();
+            con = c.Connect();
             con.Open();
             SqlCommand sc = new SqlCommand("pc_ThemCauHoi", con);
             //sc.Parameters.Add("@MaCauHoi", a.MaCauHoi);
@@ -138,15 +96,13 @@ namespace bai_tap_lon_mon_t5.Models
             DoKho = dr["doKho"].ToString();
             VungKienThuc = int.Parse(dr["vungKienThuc"].ToString());
             LoaiCauHoi = int.Parse(dr["loaiCauHoi"].ToString());
-        }
-
-    }
-    public class DanhSachCAUHOI
-    {
-        List<CAUHOI> lst = new List<CAUHOI>();
+        }       
         public List<CAUHOI> GetAll()
         {
-            SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;integrated security=SSPI ");
+            List<CAUHOI> lst = new List<CAUHOI>();
+            SqlConnection con = new SqlConnection();
+            ConnectSQL c = new ConnectSQL();
+            con = c.Connect();
             con.Open();
             SqlDataAdapter da = new SqlDataAdapter("select *from CAUHOI", con);
             DataTable dt = new DataTable();
@@ -163,7 +119,9 @@ namespace bai_tap_lon_mon_t5.Models
         }
         public CAUHOI GetSingle(int id)
         {
-            SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;integrated security=SSPI ");
+            SqlConnection con = new SqlConnection();
+            ConnectSQL c = new ConnectSQL();
+            con = c.Connect();
             con.Open();
             SqlDataAdapter da = new SqlDataAdapter("select *from CAUHOI where maCauHoi=" + id.ToString(), con);
             DataTable dt = new DataTable();
@@ -177,6 +135,6 @@ namespace bai_tap_lon_mon_t5.Models
             }
             else return null;
         }
-
     }
+   
 }

@@ -9,39 +9,81 @@ namespace bai_tap_lon_mon_t5.Models
 {
     public class DETHI
     {
-        private int maDeThi { get; set ; }
-        private DateTime ngayLap { get; set; }
+        private int maDeThi;
 
-        public void ThemDe()
+        private DateTime ngayLap;
+
+        private List<CAUHOI> listCauHoi;
+
+        public int MaDeThi { get => maDeThi; set => maDeThi = value; }
+        public DateTime NgayLap { get => ngayLap; set => ngayLap = value; }
+        public List<CAUHOI> ListCauHoi { get => listCauHoi; set => listCauHoi = value; }
+
+        public DETHI ()
         {
-            //lam roi
+            this.ListCauHoi = new List<CAUHOI>();
+
         }
-        public List<CAUHOI> DanhSachCauHoiTrongDe(int id)
+
+
+        public DETHI ChiTietDeThi(int id)
         {
-            DanhSachCHITIETDETHI dsctdt = new DanhSachCHITIETDETHI();
-            DanhSachCAUHOI dsch = new DanhSachCAUHOI();
-            var lstcauhoi = new List<CAUHOI>();
-            foreach (CHITIETDETHI ct in dsctdt.GetAll())
+            DETHI EX = new DETHI();
+            string str = string.Format("select CAUHOI.maCauHoi,CAUHOI.noiDung," +
+                "CAUHOI.loiGiai,CAUHOI.dapAnA,CAUHOI.dapAnB,CAUHOI.dapAnC,CAUHOI.dapAnD,CAUHOI.dapAnDung," +
+                "CAUHOI.IMG,CAUHOI.doKho,CAUHOI.vungKienThuc,CAUHOI.loaiCauHoi from DETHI  join CHITIETDETHI on" +
+                " DETHI.MaDeThi=CHITIETDETHI.MaDeThi join CAUHOI on CAUHOI.MaCauHoi=" +
+                "CHITIETDETHI.MaCauHoi where DETHI.MaDeThi={0}", id.ToString());
+            SqlConnection con = new SqlConnection();
+            ConnectSQL c = new ConnectSQL();
+            con = c.Connect();
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(str, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            foreach (DataRow dr in dt.Rows)
             {
-                if (ct.MaDeThi == id)
-                    lstcauhoi.Add(dsch.GetSingle(ct.MaCauHoi));
+                CAUHOI sp = new CAUHOI();
+                sp.SetData(dr);
+                EX.ListCauHoi.Add(sp);
             }
-            return lstcauhoi;
+            return EX;
+        }
+        //public List<CAUHOI> DanhSachCauHoiTrongDe(int id)
+        //{
+        //    CHITIETDETHI dsctdt = new CHITIETDETHI();
+        //    CAUHOI dsch = new CAUHOI();
+        //    var lstcauhoi = new List<CAUHOI>();
+        //    foreach (CHITIETDETHI ct in dsctdt.GetAll())
+        //    {
+        //        if (ct.MaDeThi == id)
+        //            lstcauhoi.Add(dsch.GetSingle(ct.MaCauHoi));
+        //    }
+        //    return lstcauhoi;
+        //}
+        //public List<CAUHOI> DanhSachCauHoi()
+        //{
+
+        //}
+
+        public DETHI TimDeThi(int maDeThi)
+        {
+            DETHI DT= new DETHI();
+            return DT;
         }
         public void SetData(DataRow dr)
         {
-            maDeThi = int.Parse( dr["maDeThi"].ToString());
-            ngayLap = DateTime.Parse( dr["ngayLap"].ToString());
+            MaDeThi = int.Parse( dr["maDeThi"].ToString());
+            NgayLap = DateTime.Parse( dr["ngayLap"].ToString());
         }
-     
-
-    }
-    public class DanhSachDeThi
-    {
-        List<DETHI> lst = new List<DETHI>();
         public List<DETHI> GetAll()
         {
-            SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;integrated security=SSPI ");
+            List<DETHI> lst = new List<DETHI>();
+            //SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;integrated security=SSPI ");
+            SqlConnection con = new SqlConnection();
+            ConnectSQL c = new ConnectSQL();
+            con = c.Connect();
             con.Open();
             SqlDataAdapter da = new SqlDataAdapter("select *from DETHI", con);
             DataTable dt = new DataTable();
@@ -58,7 +100,10 @@ namespace bai_tap_lon_mon_t5.Models
         }
         public DETHI GetSingle(int id)
         {
-            SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;integrated security=SSPI ");
+            //SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;integrated security=SSPI ");
+            SqlConnection con = new SqlConnection();
+            ConnectSQL c = new ConnectSQL();
+            con = c.Connect();
             con.Open();
             SqlDataAdapter da = new SqlDataAdapter("select *from DETHI where maDeThi=" + id.ToString(), con);
             DataTable dt = new DataTable();
@@ -72,5 +117,8 @@ namespace bai_tap_lon_mon_t5.Models
             }
             else return null;
         }
+
+
     }
+    
 }

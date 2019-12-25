@@ -7,5 +7,6 @@ namespace bai_tap_lon_mon_t5.Models
 {
     public class GOIDE
     {
+        
     }
 }
