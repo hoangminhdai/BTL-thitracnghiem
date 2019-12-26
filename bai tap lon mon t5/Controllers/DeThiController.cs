@@ -7,22 +7,27 @@ using bai_tap_lon_mon_t5.Models;
 
 namespace bai_tap_lon_mon_t5.Controllers
 {
-    public class LamDeThiController : Controller
+    public class DeThiController : Controller
     {
         List<CAUHOI> lstCH = new List<CAUHOI>();
         // GET: LamDeThi
         public ActionResult Index(int id)
         {
             id = 1;
-            
+
             DETHI dt = new DETHI();
             dt = dt.ChiTietDeThi(id);
-            ViewData["DSCHDT"] =dt.ListCauHoi;
-            
+            ViewData["DSCHDT"] = dt.ListCauHoi;
+
             ViewBag.id = id;
-            
+
             return View();
         }
+        public ActionResult DeThi()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult KetQua()
         {
@@ -32,7 +37,7 @@ namespace bai_tap_lon_mon_t5.Controllers
 
 
             string a;
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <=50; i++)
             {
                 a = string.Concat("CauHoi", i.ToString());
                 if (Request.Form[a] == null)
@@ -46,9 +51,9 @@ namespace bai_tap_lon_mon_t5.Controllers
             }
             DETHI dt = new DETHI();
             dt = dt.ChiTietDeThi(int.Parse(id));
-            lstCH = dt.ListCauHoi;
+            lstCH = dt.ListCauHoi; //dung r ma sai gi dau xem nay
             int count = 0;
-            for (int i = 0; i <= 9; i++)
+            for (int i = 0; i <= 49; i++)
             {
                 if (lstCH[i].DapAnDung.ToString().Trim().ToLower().Equals(lstdapan[i].ToString().Trim().ToLower()))
                 {
@@ -57,7 +62,7 @@ namespace bai_tap_lon_mon_t5.Controllers
             }
             ViewBag.made = id;
             ViewBag.a = count;
-            ViewBag.diem = count * 0.25;
+            ViewBag.diem = count * 0.2;
             return View();
         }
     }

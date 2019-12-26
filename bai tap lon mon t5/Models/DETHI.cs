@@ -22,19 +22,16 @@ namespace bai_tap_lon_mon_t5.Models
         public DETHI ()
         {
             this.ListCauHoi = new List<CAUHOI>();
-
         }
 
 
         public DETHI ChiTietDeThi(int id)
         {
             DETHI EX = new DETHI();
-            string str = string.Format("select CAUHOI.maCauHoi,CAUHOI.noiDung," +
-                "CAUHOI.loiGiai,CAUHOI.dapAnA,CAUHOI.dapAnB,CAUHOI.dapAnC,CAUHOI.dapAnD,CAUHOI.dapAnDung," +
-                "CAUHOI.IMG,CAUHOI.doKho,CAUHOI.vungKienThuc,CAUHOI.loaiCauHoi from DETHI  join CHITIETDETHI on" +
-                " DETHI.MaDeThi=CHITIETDETHI.MaDeThi join CAUHOI on CAUHOI.MaCauHoi=" +
-                "CHITIETDETHI.MaCauHoi where DETHI.MaDeThi={0}", id.ToString());
-            SqlConnection con = new SqlConnection();
+            string str = string.Format("select * from CAUHOI join DETHI   on CAUHOI.maDeThi=DETHI.maDeThi where DETHI.MaDeThi={0}", id.ToString());
+         
+
+              SqlConnection con = new SqlConnection();
             ConnectSQL c = new ConnectSQL();
             con = c.Connect();
             con.Open();

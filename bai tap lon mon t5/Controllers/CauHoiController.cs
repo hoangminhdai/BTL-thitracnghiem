@@ -9,15 +9,16 @@ namespace bai_tap_lon_mon_t5.Controllers
     public class CauHoiController : Controller
     {
         // GET: CauHoi
-        public ActionResult Index()
-        {
-            return View();
-        }
+
+       
         public ActionResult ThemTC()
         {
             return View();
         }
-
+        public ActionResult ThemCauHoiUI()
+        {
+            return View();
+        }
         public ActionResult ThemCauHoi(FormCollection fc)
         {
             var m = new CAUHOI();
@@ -25,5 +26,11 @@ namespace bai_tap_lon_mon_t5.Controllers
             m.ThemCauHoi(m);
             return RedirectToAction("ThemTC");
         }
+        public ActionResult GoiDeUI()
+        {
+            return View();
+        }
+
+
     }
 }

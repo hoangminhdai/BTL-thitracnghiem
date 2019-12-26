@@ -129,8 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CauHoiController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LamDeThiController.cs" />
+    <Compile Include="Controllers\DeThiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,12 +178,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CauHoi\Index.cshtml" />
     <Content Include="Views\CauHoi\ThemTC.cshtml" />
     <Content Include="Views\Shared\_LayoutLamDE.cshtml" />
-    <Content Include="Views\LamDeThi\Index.cshtml" />
-    <Content Include="Views\LamDeThi\KetQua.cshtml" />
+    <Content Include="Views\DeThi\Index.cshtml" />
+    <Content Include="Views\DeThi\DeThi.cshtml" />
+    <Content Include="Views\DeThi\KetQua.cshtml" />
+    <Content Include="Views\CauHoi\ThemCauHoiUI.cshtml" />
+    <Content Include="Views\CauHoi\GoiDeUI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

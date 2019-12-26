@@ -24,8 +24,10 @@ namespace bai_tap_lon_mon_t5.Models
         private string doKho;
         private int vungKienThuc;
         private int loaiCauHoi;
-
-        public int MaCauHoi { get => maCauHoi; set => maCauHoi = value; }// gàm get mã câu hỏi
+        private int maDeThi;
+        private int maGiaoVien;
+    
+        public int MaCauHoi { get => maCauHoi; set => maCauHoi = value; }
         public string NoiDung { get => noiDung; set => noiDung = value; }
         public string LoiGiai { get => loiGiai; set => loiGiai = value; }
         public string DapAnA { get => dapAnA; set => dapAnA = value; }
@@ -37,14 +39,15 @@ namespace bai_tap_lon_mon_t5.Models
         public string DoKho { get => doKho; set => doKho = value; }
         public int VungKienThuc { get => vungKienThuc; set => vungKienThuc = value; }
         public int LoaiCauHoi { get => loaiCauHoi; set => loaiCauHoi = value; }
-
-        public CAUHOI TimCauHoi(int maCauHoi)
+        public int MaDeThi { get => maDeThi; set => maDeThi = value; }
+        public int MaGiaoVien { get => maGiaoVien; set => maGiaoVien = value; }
+    
+        public CAUHOI TimCauHoi(CAUHOI a)
         {
             return null;
         }
-        public void ThemCauHoi(CAUHOI a)
+        public CAUHOI ThemCauHoi(CAUHOI a)
         {
-            //SqlConnection con = new SqlConnection("server=DESKTOP-M0UUI69\\SQLEXPRESS;database=DBThiTracNghiem;Integrated Security=SSPI");
             SqlConnection con = new SqlConnection();
             ConnectSQL c = new ConnectSQL();
             con = c.Connect();
@@ -65,14 +68,25 @@ namespace bai_tap_lon_mon_t5.Models
             sc.CommandType = CommandType.StoredProcedure;
             sc.ExecuteNonQuery();
             con.Close();
+            return a;
             
         }
+        public CAUHOI SuaCauHoi(CAUHOI a)
+        {
+            return null;
+        }
+        public CAUHOI XoaCauHoi(CAUHOI a)
+        {
+
+            return null;
+        }
+       
         public void SetData(FormCollection fc )
         {
             //maCauHoi = int.Parse(dr["maCauHoi"].ToString());//mã tự tăng nên không cần
             NoiDung = fc["noiDung"].ToString();
-            LoiGiai     = fc["noiDung"].ToString();
-            DapAnA      = fc["loiGiai"].ToString();
+            LoiGiai     = fc["loiGiai"].ToString();
+            DapAnA      = fc["dapAnA"].ToString();
             DapAnB      = fc["dapAnB"].ToString();
             DapAnC      = fc["dapAnC"].ToString();
             DapAnD      = fc["dapAnD"].ToString();
@@ -82,20 +96,20 @@ namespace bai_tap_lon_mon_t5.Models
             VungKienThuc = int.Parse(fc["vungKienThuc"].ToString());
             LoaiCauHoi   = int.Parse(fc["loaiCauHoi"].ToString());
         }
-        public void SetData(DataRow dr)//đọc dữ liệu từ dòng từ datatable
+        public void SetData(DataRow dr)
         {
             MaCauHoi = int.Parse(dr["maCauHoi"].ToString());//mã tự tăng nên không cần
-            NoiDung = dr["noiDung"].ToString();
-            LoiGiai = dr["loiGiai"].ToString();
-            DapAnA = dr["dapAnA"].ToString();
-            DapAnB = dr["dapAnB"].ToString();
-            DapAnC = dr["dapAnC"].ToString();
-            DapAnD = dr["dapAnD"].ToString();
+            NoiDung =   dr["noiDung"].ToString();
+            LoiGiai =   dr["loiGiai"].ToString();
+            DapAnA =    dr["dapAnA"].ToString();
+            DapAnB =    dr["dapAnB"].ToString();
+            DapAnC =    dr["dapAnC"].ToString();
+            DapAnD =    dr["dapAnD"].ToString();
             DapAnDung = dr["dapAnDung"].ToString();
-            IMG1 = dr["IMG"].ToString();
-            DoKho = dr["doKho"].ToString();
-            VungKienThuc = int.Parse(dr["vungKienThuc"].ToString());
-            LoaiCauHoi = int.Parse(dr["loaiCauHoi"].ToString());
+            IMG1 =      dr["IMG"].ToString();
+            DoKho =     dr["doKho"].ToString();
+            //VungKienThuc = int.Parse(dr["vungKienThuc"].ToString());
+            //LoaiCauHoi = int.Parse(dr["loaiCauHoi"].ToString());
         }       
         public List<CAUHOI> GetAll()
         {
